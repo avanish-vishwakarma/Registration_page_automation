@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User Registration Portal</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    
+<!-- HOME PAGE START -->
+<section id="homePage" class="home-page">
+
+    <header class="dashboard-header">
+        <div class="brand">
+            <div class="brand-icon">U</div>
+            <h2>Technical<span>Hub</span></h2>
+        </div>
+
+       
+<div class="header-right">
+
+    <button id="themeToggle" class="theme-toggle">
+        ☀️ Light Mode
+    </button>
+
+    <span class="admin-label">Admin Dashboard</span>
+
+    <div class="admin-avatar">A</div>
+
+</div>
+
+    </header>
+
+    <main class="dashboard-container">
+
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <div>
+                <p class="welcome-tag">USER MANAGEMENT SYSTEM</p>
+                <h1>Welcome Back, Admin 👋</h1>
+                <p class="welcome-description">
+                    Manage your registered users from one place.
+                </p>
+            </div>
+
+            <button id="openRegistrationBtn" class="register-btn">
+                + Register New User
+            </button>
+        </section>
+
+        <!-- Statistics Cards -->
+        <section class="stats-grid">
+
+            <div class="stat-card">
+                <p>Total Users</p>
+                <h2 id="totalUsers">0</h2>
+                <span>Registered accounts</span>
+            </div>
+
+            <div class="stat-card">
+                <p>Active Users</p>
+                <h2 id="activeUsers">0</h2>
+                <span>User records</span>
+            </div>
+
+            <div class="stat-card">
+                <p>Platform</p>
+                <h2>MongoDB</h2>
+                <span>Database connected</span>
+            </div>
+
+        </section>
+
+        <!-- Users Table -->
+        <section class="users-section">
+
+            <div class="table-heading">
+                <div>
+                    <h2>Registered Users</h2>
+                    <p>Manage all your registered accounts.</p>
+                </div>
+
+                <span class="user-count" id="userCount">0 Users</span>
+            </div>
+
+            <div class="table-wrapper">
+                <table class="users-table">
+
+                    <thead>
+                        <tr>
+                            <th>USER</th>
+                            <th>EMAIL</th>
+                            <th>MOBILE</th>
+                            <th>USERNAME</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="usersTableBody">
+                        <tr>
+                            <td colspan="5" class="empty-message">
+                                No users found. Register your first user!
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+            <!-- Pagination -->
+<div class="pagination-container" id="pagination">
+
+    <button id="prevBtn" disabled>
+        Previous
+    </button>
+
+    <div id="pageNumbers" class="page-numbers">
+    </div>
+
+    <button id="nextBtn">
+        Next
+    </button>
+
+</div>
+
+        </section>
+
+    </main>
+
+</section>
+<!-- HOME PAGE END -->
+
+
+<!-- <main class="registration-shell">
+
+    LEFT PANEL -->
+    <section class="form-panel">
+
+<!-- REGISTRATION PAGE START -->
+<section id="registrationPage" class="registration-page">
+
+    <!-- Back Button -->
+    <button type="button" id="backHomeBtn" class="back-btn">
+        ← Back to Home
+    </button>
+    
+
+    <!-- YOUR EXISTING REGISTRATION FORM -->
+  <form id="registrationForm" novalidate>
+
+            <!-- PERSONAL DETAILS -->
+            <section class="form-section">
+
+                <h2 class="section-heading">
+                    <i class="bi bi-person-fill"></i>
+                    Personal details
+                </h2>
+
+                <div class="fields-grid">
+
+                    <div class="field">
+                        <label class="form-label" for="title">
+                            Title <span class="required">*</span>
+                        </label>
+
+                        <select class="form-select" id="title" required>
+                            <option value="">Select title</option>
+                            <option>Mr.</option>
+                            <option>Mrs.</option>
+                            <option>Ms.</option>
+                            <option>Dr.</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label class="form-label" for="firstName">
+                            First name <span class="required">*</span>
+                        </label>
+
+                        <input class="form-control" id="firstName"
+                               placeholder="Enter first name" type="text" minlength="2" maxlength="15" pattern="[A-Za-z]+" required>
+                    </div>
+
+                    <div class="field">
+                        <label class="form-label" for="middleName">
+                            Middle name
+                        </label>
+
+                        <input class="form-control" id="middleName"
+                               placeholder="Enter middle name">
+                    </div>
+
+                    <div class="field">
+                        <label class="form-label" for="lastName">
+                            Last name <span class="required">*</span>
+                        </label>
+
+                       <input class="form-control" id="lastName"
+                               placeholder="Enter lastName name" type="text" minlength="2" maxlength="15" pattern="[A-Za-z]+" required>
+                    </div>
+
+                    <div class="field">
+                        <label class="form-label" for="dob">
+                            Date of birth <span class="required">*</span>
+                        </label>
+
+                        <input class="form-control" id="dob"
+                               type="date" required>
+                    </div>
+
+                    <div class="field">
+                        <label class="form-label" for="age">Age</label>
+
+                        <input class="form-control" id="age"
+                               type="number"
+                               placeholder="Auto-calculated" readonly>
+                    </div>
+
+                    <div class="field">
+                        <label class="form-label">
+                            Gender <span class="required">*</span>
+                        </label>
+
+                        <div class="gender-options">
+
+                            <div class="form-check">
+                                <input class="form-check-input"
+                                       type="radio" name="gender"
+                                       id="genderMale" value="Male" required>
+
+                                <label class="form-check-label"
+                                       for="genderMale">Male</label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input"
+                                       type="radio" name="gender"
+                                       id="genderFemale" value="Female">
+
+                                <label class="form-check-label"
+                                       for="genderFemale">Female</label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input"
+                                       type="radio" name="gender"
+                                       id="genderOther" value="Other">
+
+                                <label class="form-check-label"
+                                       for="genderOther">Other</label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+
+            <!-- CONTACT DETAILS -->
+            <section class="form-section">
+
+                <h2 class="section-heading">
+                    <i class="bi bi-telephone-fill"></i>
+                    Contact details
+                </h2>
+
+                <div class="fields-grid">
+
+                    <div class="field">
+                        <label class="form-label" for="mobile">
+                            Mobile number <span class="required">*</span>
+                        </label>
+
+                        <div class="input-with-icon">
+                            <i class="bi bi-phone"></i>
+
+                            <input class="form-control" id="mobile"
+                                   type="tel" inputmode="numeric"
+                                   pattern="[0-9]{10}" maxlength="10"
+                                   placeholder="10-digit mobile number"
+                                   required>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="form-label" for="alternateMobile">
+                            Alternate number
+                        </label>
+
+                        <div class="input-with-icon">
+                            <i class="bi bi-phone"></i>
+
+                            <input class="form-control"
+                                   id="alternateMobile"
+                                   type="tel" pattern="[0-9]{10}"
+                                   maxlength="10"
+                                   placeholder="Optional alternate number">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="form-label" for="contactEmail">
+                            Email address <span class="required">*</span>
+                        </label>
+
+                        <div class="input-with-icon">
+                            <i class="bi bi-envelope"></i>
+
+                            <input class="form-control"
+                                   id="contactEmail" type="email"
+                                   placeholder="name@example.com"
+                                   required>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+
+            <!-- ADDRESS DETAILS -->
+            <section class="form-section">
+
+                <h2 class="section-heading">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    Address details
+                </h2>
+
+                <div class="fields-grid">
+
+                    <div class="field full">
+                        <label class="form-label" for="address">
+                            Street address <span class="required">*</span>
+                        </label>
+
+                        <textarea class="form-control" id="address"
+                                  placeholder="House / street / area"
+                                  required></textarea>
+                    </div>
+
+                  
+
+   
+
+<div class="field">
+    <label class="form-label" for="country">
+        Country <span class="required">*</span>
+    </label>
+
+    <select class="form-select" id="country" required>
+        <option value="">Select Country</option>
+    </select>
+</div>
+
+  <div class="field">
+    <label class="form-label" for="state">
+        State <span class="required">*</span>
+    </label>
+
+    <select class="form-select" id="state" required disabled>
+        <option value="">Select State</option>
+    </select>
+</div>
+<div class="field">
+    <label class="form-label" for="city">
+        City <span class="required">*</span>
+    </label>
+
+    <select class="form-select" id="city" required disabled>
+        <option value="">Select City</option>
+    </select>
+</div>
+
+<div class="field">
+    <label class="form-label" for="pincode">
+        PIN Code <span class="required">*</span>
+    </label>
+
+    <input
+        class="form-control"
+        type="text"
+        id="pincode"
+        placeholder="Enter PIN code"
+        autocomplete="postal-code"
+        required
+    >
+
+    <small class="field-error"></small>
+</div>
+            </section>
+
+
+            <!-- PROFESSIONAL DETAILS -->
+            <section class="form-section">
+
+                <h2 class="section-heading">
+                    <i class="bi bi-briefcase-fill"></i>
+                    Professional details
+                </h2>
+
+                <div class="fields-grid">
+
+                    <div class="field">
+                        <label class="form-label" for="qualification">
+                            Qualification
+                        </label>
+
+                        <select class="form-select" id="qualification">
+                            <option value="">Select qualification</option>
+                            <option>High School</option>
+                            <option>Diploma</option>
+                            <option>Graduate</option>
+                            <option>Postgraduate</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label class="form-label" for="occupation">
+                            Occupation <span class="required">*</span>
+                        </label>
+
+                        <select class="form-select" id="occupation" required>
+                            <option value="">Select occupation</option>
+                            <option>Student</option>
+                            <option>Software Developer</option>
+                            <option>QA Engineer</option>
+                            <option>Business</option>
+                            <option>Teacher</option>
+                            <option>Government Employee</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label class="form-label" for="company">
+                            Company / organization
+                        </label>
+
+                        <input class="form-control" id="company"
+                               placeholder="Enter company name">
+                    </div>
+
+                    <div class="field">
+                        <label class="form-label" for="experience">
+                            Experience
+                        </label>
+
+                        <select class="form-select" id="experience">
+                            <option value="">Select experience</option>
+                            <option>Fresher</option>
+                            <option>Less than 1 year</option>
+                            <option>1–3 years</option>
+                            <option>3–5 years</option>
+                            <option>5+ years</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label class="form-label" for="website">
+                            Website / portfolio
+                        </label>
+
+                        <input class="form-control" id="website"
+                               type="url" placeholder="https://example.com">
+                    </div>
+
+                    <div class="field">
+                        <label class="form-label" for="linkedin">
+                            LinkedIn profile
+                        </label>
+
+                        <input class="form-control" id="linkedin"
+                               type="url" placeholder="LinkedIn profile URL">
+                    </div>
+
+                </div>
+            </section>
+
+
+            <!-- ACCOUNT DETAILS -->
+            <section class="form-section">
+
+                <h2 class="section-heading">
+                    <i class="bi bi-person-lock"></i>
+                    Account details
+                </h2>
+
+                <div class="fields-grid">
+
+                    <div class="field">
+                        <label class="form-label" for="username">
+                            Username <span class="required">*</span>
+                        </label>
+
+                        <input class="form-control" id="username"
+                               minlength="4"
+                               placeholder="Choose a username" required>
+                    </div>
+
+                    <div class="field">
+                        <label class="form-label" for="password">
+                            Password <span class="required">*</span>
+                        </label>
+
+                        <input class="form-control" id="password"
+                               type="password" minlength="8"
+                               placeholder="Minimum 8 characters" required>
+                    </div>
+
+                    <div class="field">
+                        <label class="form-label" for="confirmPassword">
+                            Confirm password <span class="required">*</span>
+                        </label>
+
+                        <input class="form-control" id="confirmPassword"
+                               type="password" minlength="8"
+                               placeholder="Re-enter password" required>
+                    </div>
+
+                </div>
+            </section>
+
+
+            <!-- ADDITIONAL INFORMATION -->
+            <section class="form-section">
+
+                <h2 class="section-heading">
+                    <i class="bi bi-chat-square-text-fill"></i>
+                    Additional information
+                </h2>
+
+                <div class="fields-grid">
+
+                    <div class="field">
+                        <label class="form-label" for="hobbies">
+                            Hobbies / interests
+                        </label>
+
+                        <input class="form-control" id="hobbies"
+                               placeholder="e.g. Reading, cricket, cooking">
+                    </div>
+
+                    <div class="field">
+                        <label class="form-label" for="profilePhoto">
+                            Profile photo
+                        </label>
+
+                        <input class="form-control" id="profilePhoto"
+                               type="file" accept="image/png,image/jpeg">
+                    </div>
+
+                    <div class="field full">
+                        <label class="form-label" for="query">
+                            About you / message
+                        </label>
+
+                        <textarea class="form-control" id="query"
+                                  placeholder="Write a short introduction (optional)"></textarea>
+                    </div>
+
+                </div>
+            </section>
+
+
+            <!-- TERMS AND BUTTONS -->
+            <div class="form-actions">
+
+                <label class="terms" id="termsContainer">
+
+                    <input type="checkbox" id="terms" required>
+
+                    <span>
+                        I agree to the Terms &amp; Conditions
+                        and Privacy Policy.
+                    </span>
+
+                </label>
+
+                <div class="action-buttons">
+
+                    <button class="btn-reset" type="reset">
+                        <i class="bi bi-arrow-counterclockwise"></i>
+                        Reset
+                    </button>
+
+                    <button class="btn-submit" type="submit">
+                        <i class="bi bi-person-plus-fill"></i>
+                        Update
+                    </button>
+
+                </div>
+            </div>
+
+        </form>
+
+</section>
+<!-- REGISTRATION PAGE END -->
+
+    </section>
+
+</main>
+
+
+<!-- EMAIL CONFIRMATION POPUP -->
+<div class="popup-overlay" id="popupOverlay"
+     role="dialog" aria-modal="true"
+     aria-labelledby="popupTitle">
+
+    <div class="popup-card">
+
+        <button type="button" class="popup-close"
+                id="closePopup" aria-label="Close">
+            &times;
+        </button>
+
+        <div class="popup-icon">
+            <i class="bi bi-envelope-check-fill"></i>
+        </div>
+
+        <h2 id="popupTitle">Confirm your email</h2>
+
+        <p>
+            Enter the email address you want to associate
+            with this registration.
+        </p>
+
+        <form id="emailForm">
+
+            <label class="form-label" for="confirmationEmail">
+                Email address <span class="required">*</span>
+            </label>
+
+            <input class="form-control"
+                   type="email"
+                   id="confirmationEmail"
+                   placeholder="name@example.com"
+                   required>
+
+            <small class="field-error" id="emailError"></small>
+
+            <div class="popup-actions">
+
+                <button type="button"
+                        class="btn-reset"
+                        id="cancelPopup">
+                    Cancel
+                </button>
+
+                <button type="submit" class="btn-confirm">
+                    <i class="bi bi-check2-circle"></i>
+                    Confirm
+                </button>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- SUCCESS TOAST -->
+<div class="toast-container position-fixed top-0 end-0 p-3"
+     style="z-index:2100">
+
+    <div id="successToast"
+         class="toast text-bg-success border-0"
+         role="alert"
+         aria-live="assertive"
+         aria-atomic="true">
+
+        <div class="d-flex">
+
+            <div class="toast-body">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                Registration confirmed successfully!
+            </div>
+
+            <button type="button"
+                    class="btn-close btn-close-white me-2 m-auto"
+                    data-bs-dismiss="toast"
+                    aria-label="Close">
+            </button>
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Your external JavaScript -->
+<script src="script.js"></script>
+
+</body>
+</html>
